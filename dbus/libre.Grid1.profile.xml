@@ -1,0 +1,75 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.profile">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the profile
+        -->
+        <property name="name" type="s" access="readwrite" />
+               
+        <!--
+            valid:
+        
+            true if the current profile is valid and can be activated
+        -->
+        <property name="valid" type="b" access="read" />
+        
+        <!--
+            rules:
+        
+            the list of all rules in this profile
+        -->
+        <property name="rules" type="as" access="read" />
+        
+        <!--
+            addRule:
+        
+            add a new rule to the list
+        -->
+        <method name="addRule">
+            <arg name="rule" type="s" direction="in" />
+            <arg name="success" type="b" direction="out" />
+        </method>
+        
+        <!--
+            remRule:
+        
+            remove a rile from the rules list
+        -->
+        <method name="remRule">
+            <arg name="rule" type="s" direction="in" />
+        </method>
+        
+        <!--
+            nameChanged:
+            @name: new name for the rule
+
+            Emitted whenever the name of the rule is changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+
+        <!--
+            ruleAdded:
+            @rule: new rule added to list
+
+            Emitted whenever a rule was added to the list
+        -->
+        <signal name="ruleAdded">
+            <arg name="rule" type="s" />
+        </signal>
+        
+        <!--
+            ruleRemoved:
+            @rule: old rule removed from the list
+
+            Emitted whenever a rule was removed from the list
+        -->
+        <signal name="ruleRemoved">
+            <arg name="rule" type="s" />
+        </signal>
+
+    </interface>
+</node>

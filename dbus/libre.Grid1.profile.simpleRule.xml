@@ -1,0 +1,141 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.profile.simpleRule">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the profile
+        -->
+        <property name="name" type="s" access="readwrite" />
+
+        
+        <!--
+            sensor:
+        
+            the sensor, which should control the given fans
+        -->
+        <property name="sensor" type="s" access="readwrite" />
+        
+        <!--
+            temperature:
+        
+            the temperature reading on the given sensor
+        -->
+        <property name="temperature" type="s" access="readwrite" />
+        
+        <!--
+            fans:
+        
+            list of the controlled fans
+        -->
+        <property name="fans" type="a(su)" access="readwrite">
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="libreGrid::FanList"/>
+        </property>
+               
+        <!--
+            limits:
+        
+            the temperature limits. The fan speed is scaled according to this list
+        -->
+        <property name="limits" type="ad" access="readwrite">
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="QList &lt; double &gt;"/>
+        </property>
+        
+        <!--
+            speeds
+        
+            the list of the fan speeds.
+            Must have the same number of elements as the limits list
+        -->
+        <property name="speeds" type="au" access="readwrite">
+            <annotation name="org.qtproject.QtDBus.QtTypeName" value="QList &lt; uint &gt;"/>
+        </property>
+
+        <!--
+            nameChanged:
+            @name: new name for the device
+
+            Emitted whenever the name of the device is changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+        
+        <!--
+            sensorChanged:
+            @sensor: the identifier of the new sensor
+
+            Emitted whenever the controlling sensor was changed
+        -->
+        <signal name="sensorChanged">
+            <arg name="name" type="s"/>
+        </signal>
+        
+        <!--
+            temperatureChanged:
+            @temperature: the identifier of the new temperature
+
+            Emitted whenever the controlling temperature was changed
+        -->
+        <signal name="temperatureChanged">
+            <arg name="temperature" type="s"/>
+        </signal>
+
+        <!--
+            fansChanged:
+            @fans: new list of fans
+
+            Emitted whenever the list of fans was changed
+        -->
+        <signal name="fansChanged">
+            <arg name="fans" type="a(su)"/>
+            <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="libreGrid::FanList"/>
+        </signal>
+        
+        <!--
+            limitsChanged:
+            @limits: new limits
+
+            Emitted whenever the limits are changed
+        -->
+        <signal name="limitsChanged">
+            <arg name="limits" type="ad"/>
+            <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QList &lt; double &gt;"/>
+        </signal>
+
+        <!--
+            speedsChanged:
+            @speeds: new limits
+
+            Emitted whenever the speeds are changed
+        -->
+        <signal name="speedsChanged">
+            <arg name="speeds" type="au"/>
+            <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QList &lt; double &gt;"/>
+        </signal>
+
+        <!--
+            add a fan to the list
+        
+            @controller identifier of the controller
+            @fan identifier of the fan
+        -->
+        <method name="addFan">
+            <arg name="controller" type="s" direction="in"/>
+            <arg name="fan" type="u" direction="in"/>
+            <arg name="success" type="b" direction="out"/>
+        </method>
+        
+        <!--
+            remove a fan from the list
+        
+            @controller identifier of the controller
+            @fan identifier of the fan
+        -->
+        <method name="remFan">
+            <arg name="controller" type="s" direction="in"/>
+            <arg name="fan" type="u" direction="in"/>
+            <arg name="success" type="b" direction="out"/>
+        </method>
+    </interface>
+</node>

@@ -1,0 +1,30 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.sensor">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the sensor
+        -->
+        <property name="name" type="s" access="readwrite" />
+           
+        <!--
+            type:
+            
+            the type of the sensor
+            0: lm_sensors, 1: GPU (nvidia)
+        -->
+        <property name="type" type="i" access="read" />
+
+        <!--
+            nameChanged:
+            @name: new name for the device
+
+            Emitted whenever the name of the device is changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+
+    </interface>
+</node>

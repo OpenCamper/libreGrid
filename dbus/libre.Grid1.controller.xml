@@ -1,0 +1,74 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.controller">
+        <!--
+            enabled:
+
+            if the controller is disabled, no autoamtic balancing is done
+        -->
+        <property name="enabled" type="b" access="readwrite" />
+        
+        <!--
+            availibleDevices:
+
+            list of all availible hardware devices for fan management
+        -->
+        <property name="availibleDevices" type="as" access="read" />
+        
+        <!--
+            availibleSensors:
+
+            list of all availible temperature sensors
+        -->
+        <property name="availibleSensors" type="as" access="read" />
+        
+        <!--
+            activeProfile:
+            
+            the currently active profile
+        -->
+        <property name="activeProfile" type="s" access="readwrite" />
+        
+        <!--
+            createProfile:
+            
+            create a new, empty, profile
+        -->
+        <method name="createProfile">
+            <arg name="identifier" type="s" direction="out" />
+        </method>
+        
+        <!--
+            deleteProfile:
+        
+            delete a profile
+        -->
+        <method name="deleteProfile">
+            <arg name="identifier" type="s" direction="in" />
+        </method>
+        
+        <!--
+            devicePlugged:
+            @identifier: internal name of the plugged device
+
+            Emitted whenever a new device is plugged. A new device will be availible under
+            /libre/Grid1/controller/devices/<@identifier>
+        -->
+        <signal name="devicePlugged">
+            <arg name="identifier" type="s"/>
+        </signal>
+        
+        <!--
+            deviceUnplugged:
+            @identifier: internal name of the unplugged device
+        
+            Emitted whenever a device is unplugged. The device node on the dbus service
+            will be removed
+        -->
+        <signal name="deviceUnplugged">
+            <arg name="identifier" type="s"/>
+        </signal>
+        
+  </interface>
+</node>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.fan">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the fan
+        -->
+        <property name="name" type="s" access="readwrite" />
+
+        <!--
+            speed:
+        
+            the current speed of the fan, in percent.
+            this is the currently configured target speed
+        -->
+        <property name="speed" type="u" access="readwrite" />
+            
+        <!--
+            rpm:
+        
+            the current speed of the fan, in RPM.
+            this is the actual speed
+        -->
+        <property name="rpm" type="u" access="read" />
+
+        <!--
+            current:
+        
+            the actual current of the fan in Ampere
+        -->
+        <property name="current" type="d" access="read" />
+
+        <!--
+            nameChanged:
+            @name: new name for the device
+
+            Emitted whenever the name of the fan was changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+
+        <!--
+            speedChanged:
+            @speed: new speed for the fan
+
+            Emitted whenever the speed of the fan was changed
+        -->
+        <signal name="speedChanged">
+            <arg name="speed" type="u"/>
+        </signal>
+
+        <!--
+            rpmChanged:
+            @rpm: new RPM of the fan
+
+            Emitted whenever the actual speed of the fan has changed
+        -->
+        <signal name="rpmChanged">
+            <arg name="rpm" type="u"/>
+        </signal>
+
+        <!--
+            currentChanged:
+            @current: new current of the fan
+
+            Emitted whenever the current of the fan has changed
+        -->
+        <signal name="currentChanged">
+            <arg name="current" type="d"/>
+        </signal>
+
+  </interface>
+</node>

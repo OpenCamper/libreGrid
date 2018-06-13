@@ -1,0 +1,39 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.temperature">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the temperature measurement
+        -->
+        <property name="name" type="s" access="readwrite" />
+           
+        <!--
+            value:
+            
+            current temperature value
+        -->
+        <property name="value" type="d" access="read" />
+
+        <!--
+            nameChanged:
+            @name: new name for the device
+
+            Emitted whenever the name of the device is changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+
+        <!--
+            valueChanged:
+            @value: new temperature value
+
+            Emitted whenever the value has changed
+        -->
+        <signal name="valueChanged">
+            <arg name="value" type="d"/>
+        </signal>
+
+    </interface>
+</node>

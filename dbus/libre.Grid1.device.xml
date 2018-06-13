@@ -1,0 +1,55 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+    <interface name="libre.Grid1.device">
+        <!--
+            name:
+            
+            the user friendly, configured, name of the device
+        -->
+        <property name="name" type="s" access="readwrite" />
+
+        <!--
+            availibleFans:
+
+            number of fans
+        -->
+        <property name="numFans" type="u" access="read" />
+        
+        <!--
+            hasNoiseSensor:
+        
+            returns %TRUE if the device has a noise sensor
+        -->
+        <property name="hasNoiseSensor" type="b" access="read" />
+        
+        
+        <!--
+            noise:
+        
+            the current noise value, if the device has a noise sensor
+        -->
+        <property name="noise" type="u" access="read" />
+            
+        
+        <!--
+            nameChanged:
+            @name: new name for the device
+
+            Emitted whenever the name of the device is changed
+        -->
+        <signal name="nameChanged">
+            <arg name="name" type="s"/>
+        </signal>
+        
+        <!--
+            noiseChanged:
+            @noise: new value of the noise sensor
+
+            Emitted whenever the messured value of noise changes
+        -->
+        <signal name="noiseChanged">
+            <arg name="noise" type="u"/>
+        </signal>
+        
+  </interface>
+</node>
